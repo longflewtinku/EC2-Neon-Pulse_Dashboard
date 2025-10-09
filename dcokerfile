@@ -1,0 +1,12 @@
+FROM python:3.11-alpine AS build
+ADD . /pythonapp
+WORKDIR /pythonapp
+RUN pip3 install --prefix=/devops -r requirements.txt
+
+FROM python:3.11-alpine AS runtime 
+LABEL PROJECT="pythonproject"
+LABEL author="devopsteam"
+COPY --from=build /pythonapp/devops /aws
+WORKDIR /aws
+EXPOSE 5001
+CMD ["python3", "app.py"] 
