@@ -1,8 +1,7 @@
 FROM python:3.11-alpine AS build
 ADD . /pythonapp
 WORKDIR /pythonapp
-RUN pip3 install --upgrade pip3
-RUN pip3 install --prefix=/devops -r requirements.txt
+RUN pip install --prefix=/devops -r requirements.txt
 
 FROM python:3.11-alpine AS runtime 
 LABEL PROJECT="pythonproject"
