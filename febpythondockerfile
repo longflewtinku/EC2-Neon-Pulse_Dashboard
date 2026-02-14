@@ -1,0 +1,12 @@
+FROM python:3.13.12-slim AS build
+ADD . /ec2
+WORKDIR /ec2
+RUN pip3 install -r requirements.txt
+
+FROM python:3.13.12-slim AS runtime 
+LABEL project="python"
+LABEL author="laxmikanth"
+COPY --from=build /ec2 /app
+WORKDIR /app  
+EXPOSE 5001
+CMD ["python3", "app.py"]
