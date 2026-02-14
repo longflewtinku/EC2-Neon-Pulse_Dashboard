@@ -9,4 +9,4 @@ LABEL author="laxmikanth"
 COPY --from=build /ec2 /app
 WORKDIR /app  
 EXPOSE 5001
-CMD ["python3", "app.py"]
+CMD ["python", "app.py"]
